@@ -17,11 +17,9 @@ Features
   - Deadline Calendar
   - Instructor and TA information
   - In group peer reviewing
-  - Reviewing other groups works
+  - Reviewing other groups works (Peer review of artifacts)
+  - Grading System
+  - Analytic tools for Insturors
   
   
-Tools
-  - SQL
-  - React - Javascript - HTML  -- OR JAVA
-  - Java - C# 
-  - Docker - Linux
+  
