@@ -25,7 +25,7 @@ In this project, we are going to implement a Classroom Helper. This app will mak
   - Analytic tools for instructors (Grading system)
     - Comparing grades between groups and instructor	
     - Instructor grade import - export
-  - Student forums: Allows students or TAs to share questions and answers among each other.
+  - Student forums: Allows students and TAs to share questions and answers among each other.
   
 
 
