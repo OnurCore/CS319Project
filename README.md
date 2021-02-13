@@ -1,16 +1,16 @@
 # CS319 Project
 
-# Team Members
+## Team Members
   - Tuna Dalbeler 21802539
   - Ezgi Saygılı  21802871
   - Funda Tan     21801861
   - Onur Korkmaz  21802925
   - Selahattin Cem Öztürk 21802856
 
-# Project Description
+## Project Description
 In this project, we are going to implement a Classroom Helper. This app will make finding groups easier for students and will make communication easier for assistants and instructors.
 
-# Features
+## Features
   - Synchronous chat
   - Private and group messaging 
   - Easy grouping 
