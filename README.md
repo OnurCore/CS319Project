@@ -13,13 +13,13 @@ In this project we are going to implement a Classroom Helper. This app will make
 Features
   - Synchronous chat
   - Private and group messaging 
-  - Easy grouping and "bundle me with friend"
+  - Easy grouping and "bundle me with friend" option
   - Deadline Calendar
   - Instructor and TA information
-  - In group peer reviewing
-  - Reviewing other groups works (Peer review of artifacts)
+  - In-group peer reviewing
+  - Reviewing other groups' work (Peer review of artifacts)
   - Grading System
-  - Analytic tools for Insturors
+  - Analytic tools for instructors
   
   
   
