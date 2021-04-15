@@ -1,0 +1,322 @@
+{
+    "mockup": {
+        "controls": {
+            "control": [
+                {
+                    "ID": "0",
+                    "typeID": "BrowserWindow",
+                    "zOrder": "0",
+                    "w": "1161",
+                    "h": "676",
+                    "measuredW": "450",
+                    "measuredH": "400",
+                    "x": "115",
+                    "y": "2"
+                },
+                {
+                    "ID": "1",
+                    "typeID": "Icon",
+                    "zOrder": "1",
+                    "measuredW": "48",
+                    "measuredH": "48",
+                    "x": "131",
+                    "y": "90",
+                    "properties": {
+                        "icon": {
+                            "ID": "bars",
+                            "size": "large"
+                        }
+                    }
+                },
+                {
+                    "ID": "5",
+                    "typeID": "VerticalTabBar",
+                    "zOrder": "2",
+                    "w": "574",
+                    "h": "504",
+                    "measuredW": "200",
+                    "measuredH": "212",
+                    "x": "296",
+                    "y": "138",
+                    "properties": {
+                        "text": "Analysis Iteration 1\nDesign Iteration 1\nAnalysis Iteration 2\nDesign Iteration 2\nFinal Raport"
+                    }
+                },
+                {
+                    "ID": "6",
+                    "typeID": "VerticalScrollBar",
+                    "zOrder": "3",
+                    "h": "495",
+                    "measuredW": "16",
+                    "measuredH": "100",
+                    "x": "848",
+                    "y": "138"
+                },
+                {
+                    "ID": "7",
+                    "typeID": "TextArea",
+                    "zOrder": "4",
+                    "w": "423",
+                    "h": "495",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "417",
+                    "y": "138",
+                    "properties": {
+                        "text": "\n\n\"Lorem ipsum dolor sit amet, \n\n\n\nconsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \n\n\n\n\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. \n\n\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\""
+                    }
+                },
+                {
+                    "ID": "10",
+                    "typeID": "FieldSet",
+                    "zOrder": "5",
+                    "w": "353",
+                    "h": "100",
+                    "measuredW": "200",
+                    "measuredH": "170",
+                    "x": "894",
+                    "y": "100",
+                    "properties": {
+                        "text": "Anonymous"
+                    }
+                },
+                {
+                    "ID": "11",
+                    "typeID": "Paragraph",
+                    "zOrder": "6",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "920",
+                    "y": "123",
+                    "properties": {
+                        "text": "This part really does not make sense.\n\n\n1 / 4 / 2/ 5 \n"
+                    }
+                },
+                {
+                    "ID": "14",
+                    "typeID": "FieldSet",
+                    "zOrder": "7",
+                    "w": "353",
+                    "h": "100",
+                    "measuredW": "200",
+                    "measuredH": "170",
+                    "x": "894",
+                    "y": "219",
+                    "properties": {
+                        "text": "Anonymous"
+                    }
+                },
+                {
+                    "ID": "15",
+                    "typeID": "Paragraph",
+                    "zOrder": "8",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "920",
+                    "y": "242",
+                    "properties": {
+                        "text": "Good job!\n\n5 / 5 / 5 / 5"
+                    }
+                },
+                {
+                    "ID": "18",
+                    "typeID": "Icon",
+                    "zOrder": "9",
+                    "measuredW": "48",
+                    "measuredH": "48",
+                    "x": "1183",
+                    "y": "126",
+                    "properties": {
+                        "icon": {
+                            "ID": "comments",
+                            "size": "large"
+                        }
+                    }
+                },
+                {
+                    "ID": "19",
+                    "typeID": "Icon",
+                    "zOrder": "10",
+                    "measuredW": "48",
+                    "measuredH": "48",
+                    "x": "1183",
+                    "y": "245",
+                    "properties": {
+                        "icon": {
+                            "ID": "comments",
+                            "size": "large"
+                        }
+                    }
+                },
+                {
+                    "ID": "20",
+                    "typeID": "ButtonBar",
+                    "zOrder": "11",
+                    "measuredW": "169",
+                    "measuredH": "27",
+                    "x": "1072",
+                    "y": "438",
+                    "properties": {
+                        "text": "1 , 2 , 3, 4, 5"
+                    }
+                },
+                {
+                    "ID": "21",
+                    "typeID": "ButtonBar",
+                    "zOrder": "12",
+                    "measuredW": "169",
+                    "measuredH": "27",
+                    "x": "1072",
+                    "y": "470",
+                    "properties": {
+                        "text": "1 , 2 , 3, 4, 5"
+                    }
+                },
+                {
+                    "ID": "22",
+                    "typeID": "ButtonBar",
+                    "zOrder": "13",
+                    "measuredW": "169",
+                    "measuredH": "27",
+                    "x": "1072",
+                    "y": "507",
+                    "properties": {
+                        "text": "1 , 2 , 3, 4, 5"
+                    }
+                },
+                {
+                    "ID": "23",
+                    "typeID": "ButtonBar",
+                    "zOrder": "14",
+                    "measuredW": "169",
+                    "measuredH": "27",
+                    "x": "1072",
+                    "y": "400",
+                    "properties": {
+                        "text": "1 , 2 , 3, 4, 5"
+                    }
+                },
+                {
+                    "ID": "24",
+                    "typeID": "TextArea",
+                    "zOrder": "15",
+                    "w": "190",
+                    "h": "133",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "882",
+                    "y": "411"
+                },
+                {
+                    "ID": "25",
+                    "typeID": "TextArea",
+                    "zOrder": "16",
+                    "w": "190",
+                    "h": "37",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "882",
+                    "y": "395",
+                    "properties": {
+                        "text": "Document Quality (Clarity etc.)"
+                    }
+                },
+                {
+                    "ID": "26",
+                    "typeID": "TextArea",
+                    "zOrder": "17",
+                    "w": "190",
+                    "h": "37",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "882",
+                    "y": "433",
+                    "properties": {
+                        "text": "Logic"
+                    }
+                },
+                {
+                    "ID": "27",
+                    "typeID": "TextArea",
+                    "zOrder": "18",
+                    "w": "190",
+                    "h": "37",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "882",
+                    "y": "465",
+                    "properties": {
+                        "text": "Diagrams"
+                    }
+                },
+                {
+                    "ID": "28",
+                    "typeID": "TextArea",
+                    "zOrder": "19",
+                    "w": "190",
+                    "h": "42",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "882",
+                    "y": "502",
+                    "properties": {
+                        "text": "Design Goals"
+                    }
+                },
+                {
+                    "ID": "29",
+                    "typeID": "Button",
+                    "zOrder": "20",
+                    "measuredW": "65",
+                    "measuredH": "27",
+                    "x": "1148",
+                    "y": "600",
+                    "properties": {
+                        "text": "Submit"
+                    }
+                },
+                {
+                    "ID": "30",
+                    "typeID": "TextInput",
+                    "zOrder": "21",
+                    "w": "319",
+                    "measuredW": "149",
+                    "measuredH": "27",
+                    "x": "882",
+                    "y": "555",
+                    "properties": {
+                        "text": "(Additional Comments)"
+                    }
+                },
+                {
+                    "ID": "31",
+                    "typeID": "TextArea",
+                    "zOrder": "22",
+                    "w": "368",
+                    "h": "52",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "417",
+                    "y": "86",
+                    "properties": {
+                        "text": "Group G",
+                        "size": "32"
+                    }
+                }
+            ]
+        },
+        "attributes": {
+            "name": "New Wireframe 1",
+            "order": 938428.5264654435,
+            "parentID": null,
+            "notes": null
+        },
+        "branchID": "Master",
+        "resourceID": "2278E287-509B-183B-1098-2EC38DDDB7D8",
+        "mockupH": "676",
+        "mockupW": "1161",
+        "measuredW": "1276",
+        "measuredH": "678",
+        "version": "1.0"
+    }
+}
