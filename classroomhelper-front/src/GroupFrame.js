@@ -7,19 +7,17 @@ export default class GroupFrame extends React.Component {
         //TODO
     }
 
-    async fetchGroupByID(id){
-       var requestOptions = {
-           method: 'GET',
-           redirect: 'follow'
-         };
+    async fetchGroupByID(){
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+            };
 
-    const response = await fetch("https://0fb8886f-8d61-4bc9-9b01-4362a104ed54.mock.pstmn.io/group?id="+id, requestOptions)
+        const response = await fetch("https://0fb8886f-8d61-4bc9-9b01-4362a104ed54.mock.pstmn.io/group?id="+ this.props.id, requestOptions)
 
-    const json = await response.json();
+        const json = await response.json();
 
-    console.log(json)
-
-    return json;
+        return json;
     
 
         // return {
@@ -37,8 +35,8 @@ export default class GroupFrame extends React.Component {
 
     render(){
 
-        var result = this.fetchGroupByID(this.props.id);
-        console.log("inside render" , this.props.id , result);
+        var result = this.fetchGroupByID();
+        console.log(this.props.id, "JSOOOOOOOOOOON" , result)
         return (
             <>
                 <Group id = {this.props.id} groupData = {result}></Group>
