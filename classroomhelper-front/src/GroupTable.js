@@ -5,21 +5,22 @@ import "./GroupTable.css"
 
 export default class GroupTable extends React.Component {
 
+    //static groupIDArray = [];
+    fetchAvailableGroupInfo() {
+        //Get a fetch method here
+        //var groupIDArray = [1,2,3];
+    }
 
     render(){
-        return (
-            <div class="row">
-                <div class="column"  >
-                    <GroupFrame id="1A"> </GroupFrame>
-                </div>
-                <div class="column" > 
-                    <GroupFrame id="1B"> </GroupFrame>
-                </div>
-               
-                <p>This is GroupTable </p> 
-            </div>
+        //this.fetchGroupInfo();
+        var groupIDArray = [1,2];
+        var rows = [];
 
-            
-        )
+        for (var i = 0; i <groupIDArray.length ; i++ ) {
+            rows.push(<div key={"col " + i} className="column"  > <GroupFrame id={groupIDArray[i]}> </GroupFrame>  </div>)
+            //<div class="row"> <div class="column"  > <GroupFrame id={groupIDArray[i]}> </GroupFrame>  </div></div>
+        } 
+        return <div>{rows}</div>;
+           
     }
 }
