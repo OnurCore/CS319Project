@@ -1,5 +1,5 @@
 import GroupTable from "./GroupTable"
-import Group from './Group'
+
 function App() {
 
   //Consturctor
@@ -18,13 +18,3 @@ function App() {
 }
 
 export default App;
-
-
-// return (
-//   <div className="App">
-//     <GroupTable >
-      
-    
-//     </GroupTable>
-//   </div>
-// );
