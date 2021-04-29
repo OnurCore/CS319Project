@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import './App.css';
 import GroupTable from "./Groups/GroupTable"
-
+import { slide as Menu } from 'react-burger-menu'
 import React from 'react';
 
 
