@@ -13,7 +13,7 @@ export default class GroupTable extends React.Component {
 
     render(){
         //this.fetchGroupInfo();
-        var groupIDArray = [1,2];
+        var groupIDArray = [1,2,3,4,5,6,7,8,9,10];
         var rows = [];
 
         for (var i = 0; i <groupIDArray.length ; i++ ) {

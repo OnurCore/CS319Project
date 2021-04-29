@@ -2,56 +2,47 @@ import React from 'react'
 
 export default class Group extends React.Component {
 
-    constructor(){
-        super()
-        this.state = {
-            nameSource: null
-        }
+    state = {
+        loading: true,
+        groupInfo : null
     }
 
-    // componentDidMount(){
-    //         var requestOptions = {
-    //             method: 'GET',
-    //             redirect: 'follow'
-    //           };
-     
-    //     fetch("https://0fb8886f-8d61-4bc9-9b01-4362a104ed54.mock.pstmn.io/group?id="+ this.props.id, requestOptions)
-    //           .then((response) => {
-    //             console.log("response: ", response.json());
-    //             let namelist = response;
-    //             this.setState({
-    //                 nameSource : namelist
-    //             })
-    //         })
-    
+    async componentDidMount(){
 
-         
-    // }
+        const url = "https://0fb8886f-8d61-4bc9-9b01-4362a104ed54.mock.pstmn.io/group?id=" + this.props.id
+        const response = await fetch(url);
+        const data = await response.json();
+        this.setState({
+            loading: false,
+            groupInfo: data
+            
+        })
+        console.log("inside comp did mo" , this.state.groupInfo);
+    }
     
     render(){
-        
-
-        // async function createNamesTable(groupData ){
-        //     return await Promise.resolve(groupData);
-        // }
-        
-
-        if( this.state.nameSource instanceof Promise ){ return null;}
-        if( this.state.nameSource == null ){ return null;}
-        console.log("inside group namesource", this.props.id, this.state.nameSource.body);
+       
+        console.log("render" , this.state.groupInfo);
         return (
-            
-            <div className="group-name-list">
-                <h1>Group {this.props.id}</h1>
-                <ul>
-                    <li>isim1</li>
-                    <li>isim1</li>
-                    <li>isim1</li>
-                    <li>isim1</li>
-                    <li>isim1</li>
-                </ul>
+            <div>
+                {
+                    (this.state.loading || (this.state.groupInfo === null)) ? 
+                    <div>loading...</div> 
+                    :
+                    <div className="group-name-list">
+                    <h1>Group {this.props.id}</h1>
+                    <ul>
+                        <li>{this.state.groupInfo.userlist[0]}</li>
+                        <li>{this.state.groupInfo.userlist[1]}</li>
+                        <li>{this.state.groupInfo.userlist[2]}</li>
+                        <li>{this.state.groupInfo.userlist[3]}</li>
+                        <li>{this.state.groupInfo.userlist[4]}</li>
+                    </ul>
+                </div>
+           
+                } 
             </div>
-        
+                
         )
     }
 }
