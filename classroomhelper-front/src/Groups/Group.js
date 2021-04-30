@@ -27,9 +27,7 @@ export default class Group extends React.Component {
                     "dummy data",
                     "dummy data",
                     "dummy data",
-                    "dummy data" ] }
-            
-        })
+                    "dummy data" ]}})
     }
     
     render(){
