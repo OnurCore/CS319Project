@@ -1,20 +1,8 @@
-import GroupTable from "./GroupTable"
+import React from 'react';
+import Routes from './routes';
 
-function App() {
-
-  //Consturctor
-
-  //Function
+export default () => <Routes />;
 
 
-  return (
-    <div className="App">
-      <GroupTable>
-        
-      
-      </GroupTable>
-    </div>
-  );
-}
 
-export default App;
+

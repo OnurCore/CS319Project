@@ -9,20 +9,29 @@ export default class Group extends React.Component {
 
     async componentDidMount(){
 
-        const url = "https://0fb8886f-8d61-4bc9-9b01-4362a104ed54.mock.pstmn.io/group?id=" + this.props.id
-        const response = await fetch(url);
-        const data = await response.json();
+        //This part is commented because, fake database api request has limited usage. 
+
+        // const url = "https://0fb8886f-8d61-4bc9-9b01-4362a104ed54.mock.pstmn.io/group?id=" + this.props.id
+        // const response = await fetch(url);
+        // const data = await response.json();
+        // this.setState({
+        //     loading: false,
+        //     groupInfo: data
+        // })
+
         this.setState({
             loading: false,
-            groupInfo: data
-            
-        })
-        console.log("inside comp did mo" , this.state.groupInfo);
+            groupInfo: { "id": 1,
+             "name": "1A",
+              "userlist": [ "dummy data",
+                    "dummy data",
+                    "dummy data",
+                    "dummy data",
+                    "dummy data" ]}})
     }
     
     render(){
        
-        console.log("render" , this.state.groupInfo);
         return (
             <div>
                 {

@@ -1,7 +1,9 @@
 .column {
     float: left;
-    width: 33.33%;
+    width: 24%;
     padding: 5px;
+    border: 1px solid black;
+    background-color: lightgray;
   }
   
   /* Clear floats after image containers */
