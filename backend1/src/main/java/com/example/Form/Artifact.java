@@ -1,9 +1,11 @@
 package com.example.Form;
+import com.example.Grades.*;
+import javax.persistence.OneToMany;
 import com.example.Course.Course;
 import com.example.People.*;
 
 import java.util.List;
-
+import java.util.ArrayList;
 import javax.persistence.Entity;
 import java.util.Date;
 import javax.persistence.GeneratedValue;
@@ -17,6 +19,11 @@ import javax.persistence.ManyToOne;
 @Entity
 @Table
 public class Artifact {
+	public enum ArtifactStatus{
+		NotSubmitted,
+		Submitted,
+		Graded
+	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -25,7 +32,9 @@ public class Artifact {
 	
 	private Date date;
 	
-	private String status;
+	private ArtifactStatus status;
+	@OneToMany
+	private List<Grade> grades;
 	
 	@ManyToOne
 	private People student;
@@ -44,7 +53,7 @@ public class Artifact {
 	public Artifact() {super();}
 	public Artifact(String explanation,
 			Date date,
-			String status,
+			ArtifactStatus status,
 			Group group,
 			Course course,
 			Assignment assignment) {
@@ -54,11 +63,17 @@ public class Artifact {
 		this.setCourse(course);
 		this.setAssignment(assignment);
 		this.setFile(null);
+		
+		List<Grade> grades = new ArrayList<Grade>();
+		for(GradingCriteria crit : assignment.getCriterias()) {
+			grades.add(new Grade(crit));
+		}
+		this.setGrades(grades);
 	}
 	public Artifact(
 			String explanation,
 			Date date,
-			String status,
+			ArtifactStatus status,
 			People student,
 			Course course,
 			Assignment assignment){
@@ -72,7 +87,7 @@ public class Artifact {
 	public Artifact(
 		String explanation,
 		Date date,
-		String status,
+		ArtifactStatus status,
 		People student,
 		Group group,
 		Course course,
@@ -147,11 +162,18 @@ public class Artifact {
 		this.date = date;
 	}
 
-	public String getStatus() {
+	public ArtifactStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(ArtifactStatus status) {
 		this.status = status;
 	}
+	public List<Grade> getGrades() {
+		return grades;
+	}
+	public void setGrades(List<Grade> grades) {
+		this.grades = grades;
+	}
+
 }

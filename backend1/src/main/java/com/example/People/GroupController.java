@@ -14,9 +14,11 @@ import com.example.Course.*;
 class GroupController {
 
     private final GroupRepository repository;
+    private final PeopleRepository peopleRepository;
     
-    public GroupController(GroupRepository repository) {
+    public GroupController(GroupRepository repository, PeopleRepository peopleRepository) {
         this.repository = repository;
+        this.peopleRepository = peopleRepository;
     }
 
 
@@ -54,8 +56,10 @@ class GroupController {
         return repository.findById(id)
                 .map(group -> {
                     group.setName(newGroup.getName());
-                    //people.setRole(newPeople.getRole()); ???????
-                    //people.setContactInfo(newPeople.getContactInfo());
+                    group.setGroupNo(newGroup.getGroupNo());
+                    //group.setGroupGrade(newGroup.getGroupGrade());
+                    group.setAllPeople(newGroup.getAllPeople());
+                    //group.setGroupTasks(newGroup.getGroupTasks());
                     return repository.save(group);
                 })
                 .orElseGet(() -> {
@@ -64,16 +68,40 @@ class GroupController {
                 });
     }
     @PostMapping("/leaveGroup/{group}/{student}")
-    public void leaveGroup(@PathVariable Group group, People student) {
-    	List<People> people = group.getAllPeople();
-    	people.remove(student);
-    	if(people.isEmpty()) {
+    void leaveGroup(@PathVariable Group group, People student) {
+    	List<People> currentPeople = group.getAllPeople();
+    	currentPeople.remove(student);
+    	if(currentPeople.isEmpty()) {
     		repository.deleteById(group.getId());
-    	}else {
-    		group.setAllPeople(people);
-    		repository.save(group);
+    	}
+    	else {
+    		group.setAllPeople(currentPeople);
     	}
     }
+
+    @PostMapping("/joinGroup/{group}/{student}")
+    void joinGroup(@PathVariable Group group, People people) {
+        List<People> currentPeople = group.getAllPeople();
+        
+        //Comments will beremoved later
+        /*
+        if (group.getCourse().getUnassignedStudents().contains(people)) {
+                currentPeople.add(people);
+        }*/
+        group.setAllPeople(currentPeople);
+    }
+
+    @PostMapping("/joinGroup/{group}/{student1}{student2}")
+    void joinGroupWithFriend(@PathVariable Group group, List<People> newPeople ) {
+        List<People> currentPeople = group.getAllPeople();
+        for (People people : newPeople) {
+            /*if (group.getCourse().getUnassignedStudents().contains(people)) {
+                currentPeople.add(people);
+            }*/
+        }
+        group.setAllPeople(currentPeople);
+    }
+
     @DeleteMapping("/allGroups/{id}")
     void deleteGroup(@PathVariable Long id) {
         repository.deleteById(id);

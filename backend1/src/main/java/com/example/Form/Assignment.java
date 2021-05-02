@@ -20,10 +20,6 @@ import javax.persistence.CollectionTable;
 @Entity
 @Table(name = "Assignment")
 public class Assignment {
-	public enum AssignmentType{
-		GroupAssignment,
-		StudentAssignment
-	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -34,7 +30,7 @@ public class Assignment {
 	
 	private Date date;
 	
-	private String status;
+	private AssignmentEnum.AssignmentStatus status;
 	@ElementCollection
 	private List<String> comments;
 	@OneToMany
@@ -45,11 +41,11 @@ public class Assignment {
 	@CollectionTable(name="criterias", joinColumns=@JoinColumn(name="ID"))
 	private List<GradingCriteria> criterias;
 	
-	private AssignmentType type;
-	public AssignmentType getType() {
+	private AssignmentEnum.AssignmentType type;
+	public AssignmentEnum.AssignmentType getType() {
 		return type;
 	}
-	public void setType(AssignmentType type) {
+	public void setType(AssignmentEnum.AssignmentType type) {
 		this.type = type;
 	}
 	public Long getId() {
@@ -76,10 +72,10 @@ public class Assignment {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public String getStatus() {
+	public AssignmentEnum.AssignmentStatus getStatus() {
 		return status;
 	}
-	public void setStatus(String status) {
+	public void setStatus(AssignmentEnum.AssignmentStatus status) {
 		this.status = status;
 	}
 	public List<String> getComments() {

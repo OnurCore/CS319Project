@@ -1,7 +1,10 @@
 package com.example.Form;
 
+import com.example.Grades.Grade;
 import com.example.Course.Course;
-import com.example.Form.Assignment.AssignmentType;
+import com.example.Form.Artifact.ArtifactStatus;
+
+import com.example.Form.AssignmentEnum;
 import com.example.People.*;
 import com.example.People.People.PeopleType;
 import com.example.People.PeopleRepository;
@@ -83,14 +86,15 @@ public class AssignmentReviewController {
 	}
 	@PostMapping("/createAssignment")
 	public void createAssignment(@RequestBody Assignment assignment) {
+		assignment.setStatus(AssignmentEnum.AssignmentStatus.Uploaded);
 		assignmentRepository.save(assignment);
 		List<People> people = assignment.getCourse().getPeople();
 		List<People> students = getStudentsFromPeople(people);
-		if(assignment.getType() == AssignmentType.GroupAssignment) {
+		if(assignment.getType() == AssignmentEnum.AssignmentType.GroupAssignment) {
 			for(Group group : assignment.getCourse().getGroups()) {
 				Artifact artifact = new Artifact(assignment.getExplanation(),
 												assignment.getDate(),
-												"Not Uploaded",
+												ArtifactStatus.NotSubmitted,
 												group,
 												assignment.getCourse(),
 												assignment);
@@ -100,7 +104,7 @@ public class AssignmentReviewController {
 			for(People student : students) {
 				Artifact artifact = new Artifact(assignment.getExplanation(),
 						assignment.getDate(),
-						"Not Uploaded",
+						ArtifactStatus.NotSubmitted,
 						student,
 						assignment.getCourse(),
 						assignment);
@@ -138,8 +142,15 @@ public class AssignmentReviewController {
 	public void updateAnswerForm(@RequestBody Answer answer) {
 		answerRepo.save(answer);
 	}
-	@PutMapping("/UploadAssignment/{id}")
-	public void updateArtifact(@RequestBody Artifact artifact) {
+	@PutMapping("/UploadAssignment/{artifact}")
+	public void updateArtifact(@PathVariable Artifact artifact) {
+		artifactRepository.save(artifact);
+	}
+	@PutMapping("/GradeArtifact/{instructor}/artifact=/{artifact}")
+	public void gradeArtifact(@PathVariable People instructor,
+							  @PathVariable Artifact artifact,
+							  @RequestBody List<Grade> grades) {
+		artifact.setGrades(grades);
 		artifactRepository.save(artifact);
 	}
 	@DeleteMapping("/DeleteQuestionForm/{id}")

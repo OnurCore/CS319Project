@@ -1,16 +1,40 @@
 package com.example.Grades;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Embedded;
+@Entity
+@Table
 public class Grade{
 	public enum GradeType{
 		ArtifactGrade,
 		PeerGrade
 	}
-	public Integer grade;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	
-	public String comment;
+	private Integer grade;
 	
-	public Integer maxGrade;
-	
-	public GradeType type;
+	private String comment;
+	@Embedded
+	private GradingCriteria criteria;
+
+	private GradeType type;
+	public Grade() {super();}
+	public Grade(GradingCriteria crit) {
+		this.setCriteria(crit);
+	}
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public GradeType getType() {
 		return type;
 	}
@@ -34,15 +58,13 @@ public class Grade{
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-
-	public Integer getMaxGrade() {
-		return maxGrade;
+	public GradingCriteria getCriteria() {
+		return criteria;
 	}
 
-	public void setMaxGrade(Integer maxGrade) {
-		this.maxGrade = maxGrade;
+	public void setCriteria(GradingCriteria criteria) {
+		this.criteria = criteria;
 	}
-
 	
 	
 }

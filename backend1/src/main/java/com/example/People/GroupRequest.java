@@ -9,6 +9,11 @@ import com.example.People.People;
 @Entity
 @Table
 public class GroupRequest{
+	public enum GroupRequestStatus{
+		NotEvaluated,
+		Rejected,
+		Accepted
+	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -18,7 +23,7 @@ public class GroupRequest{
 	
 	private String text;
 	
-	private String status;
+	private GroupRequestStatus status;
 	
 	private Date date;
 
@@ -46,11 +51,11 @@ public class GroupRequest{
 		this.text = text;
 	}
 
-	public String getStatus() {
+	public GroupRequestStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(GroupRequestStatus status) {
 		this.status = status;
 	}
 

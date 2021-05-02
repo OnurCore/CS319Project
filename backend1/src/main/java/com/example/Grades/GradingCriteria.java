@@ -2,8 +2,10 @@ package com.example.Grades;
 import javax.persistence.Embeddable;
 @Embeddable
 public class GradingCriteria{
+	
 		private String explanation;
 		private Integer maximum;
+		
 		public String getExplanation() {
 			return explanation;
 		}
