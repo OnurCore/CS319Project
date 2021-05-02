@@ -1,0 +1,97 @@
+com/example/Course/CourseRepository.java
+ com.example.Course.CourseRepository
+com/example/People/PeopleNotFound.java
+ com.example.People.PeopleNotFoundException
+com/example/Form/AnswerFormRepository.java
+ com.example.Form.AnswerFormRepository
+com/example/Form/QuestionBase.java
+ com.example.Form.QuestionBase
+ com.example.Form.QuestionBase$QuestionType
+com/example/Form/AssignmentNotFoundException.java
+ com.example.Form.AssignmentNotFoundException
+com/example/Form/Question.java
+ com.example.Form.Question
+com/example/Form/QuestionRepository.java
+ com.example.Form.QuestionRepository
+com/example/Form/AssignmentRepository.java
+ com.example.Form.AssignmentRepository
+com/example/People/GroupRepository.java
+ com.example.People.GroupRepository
+com/example/Form/ArtifactRepository.java
+ com.example.Form.ArtifactRepository
+com/example/Course/Course.java
+ com.example.Course.Course
+com/example/MainApplication.java
+ com.example.MainApplication
+com/example/Grades/GradingCriteria.java
+ com.example.Grades.GradingCriteria
+com/example/Form/QuestionForm.java
+ com.example.Form.QuestionForm
+com/example/Form/QuestionFormWithQuestions.java
+ com.example.Form.QuestionFormWithQuestions
+com/example/Form/Formbase.java
+ com.example.Form.Formbase
+ com.example.Form.Formbase$FormType
+com/example/Course/CourseController.java
+ com.example.Form.CourseController
+com/example/Form/AssignmentReviewController.java
+ com.example.Form.AssignmentReviewController
+com/example/Form/AnswerRepository.java
+ com.example.Form.AnswerRepository
+com/example/Form/Answer.java
+ com.example.Form.Answer
+com/example/Calendar/GroupCalendar.java
+ com.example.Calendar.GroupCalendar
+com/example/Form/Artifact.java
+ com.example.Form.Artifact
+com/example/People/Instructor.java
+ com.example.People.Instructor
+com/example/People/GroupRequest.java
+ GroupRequest
+com/example/People/PeopleNotFoundAdvice.java
+ com.example.People.PeopleNotFoundAdvice
+com/example/People/GroupNotFoundAdvice.java
+ com.example.People.GroupNotFoundAdvice
+com/example/Calendar/CourseCalendar.java
+ com.example.Calendar.CourseCalendar
+com/example/Chat/PrivateMessage.java
+ com.example.Chat.PrivateMessage
+com/example/People/Group.java
+ com.example.People.Group
+com/example/People/Student.java
+ com.example.People.Student
+com/example/Grades/GradeBook.java
+ com.example.Grades.GradeBook
+com/example/People/People.java
+ com.example.People.People
+ com.example.People.People$PeopleType
+com/example/People/PeopleRepository.java
+ com.example.People.PeopleRepository
+com/example/Form/Assignment.java
+ com.example.Form.Assignment
+ com.example.Form.Assignment$AssignmentType
+com/example/Course/CourseNotFoundException.java
+ com.example.Course.CourseNotFoundException
+com/example/Grades/Grade.java
+ com.example.Grades.Grade
+ com.example.Grades.Grade$GradeType
+com/example/Chat/Message.java
+ com.example.Chat.Message
+com/example/People/Administrator.java
+ com.example.People.Administrator
+com/example/Chat/GroupMessage.java
+ com.example.Chat.GroupMessage
+com/example/People/PeopleController.java
+ com.example.People.PeopleController
+com/example/Chat/GeneralMessage.java
+ com.example.Chat.GeneralMessage
+com/example/Calendar/Task.java
+ com.example.Calendar.Task
+com/example/People/GroupController.java
+ com.example.People.GroupController
+com/example/Form/QuestionFormRepository.java
+ com.example.Form.QuestionFormRepository
+com/example/People/GroupNotFoundException.java
+ com.example.People.GroupNotFoundException
+com/example/Form/AnswerForm.java
+ com.example.Form.AnswerForm
