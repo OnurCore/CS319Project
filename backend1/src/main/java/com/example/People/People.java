@@ -34,12 +34,15 @@ public class People implements Serializable{
 	private String people_name;
 	
 	private String contactInfo;
+	
+	// Many to many for course
 	@ManyToMany(cascade = {CascadeType.ALL})
 	@JoinTable(name = "courseID_peopleID",
 			joinColumns = @JoinColumn(name = "course_id", referencedColumnName = "Id"),
 	inverseJoinColumns = @JoinColumn(name = "people_id", referencedColumnName = "Id"))
 	private List<Course> allCourses = new ArrayList<Course>();
 	
+	// MAny to many for group
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinTable(name = "groupID_and_peopleID",
 			joinColumns = @JoinColumn(name = "group_id", referencedColumnName = "Id"),
@@ -47,7 +50,7 @@ public class People implements Serializable{
 	private List<Group> allGroups = new ArrayList<Group>();
 	private PeopleType people;
 	
-	
+	// Old design
 	/*@OneToMany(
 	        mappedBy = "people",
 	        cascade = CascadeType.ALL,
@@ -55,6 +58,7 @@ public class People implements Serializable{
 	    )
 	private List<GroupPeopleUnion> allGroups = new ArrayList<GroupPeopleUnion>();*/
 	
+	// Utility functions
 	public void addGroup(Group group) {
 		allGroups.add(group);
 		group.getAllPeople().add(this);
@@ -63,6 +67,8 @@ public class People implements Serializable{
 		group.getAllPeople().remove(this);
 		allGroups.remove(group);
 	}
+	
+	// getter setters
 	
 	public String getPeople_name() {
 		return people_name;

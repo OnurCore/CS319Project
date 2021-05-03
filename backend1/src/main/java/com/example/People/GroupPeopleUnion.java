@@ -7,6 +7,9 @@ import javax.persistence.MapsId;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
 import java.util.Date;
+
+// Old design
+
 @Entity
 @Table(name = "group_people_union")
 public class GroupPeopleUnion {

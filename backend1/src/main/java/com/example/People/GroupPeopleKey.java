@@ -3,6 +3,10 @@ import javax.persistence.Embeddable;
 import java.lang.Override;
 import javax.persistence.Column;
 import java.io.Serializable;
+
+
+// Old design
+
 @Embeddable
 public class GroupPeopleKey implements Serializable{
 	@Column(name = "group_id")

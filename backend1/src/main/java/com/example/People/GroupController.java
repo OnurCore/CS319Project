@@ -77,19 +77,18 @@ class GroupController {
     }
     @PostMapping("/leaveGroup/{group}/{student}")
     void leaveGroup(@PathVariable Group group, People student) {
-    	List<People> currentPeople = new ArrayList<People>();
-    	//List<GroupPeopleUnion> unions = group.
-    	//currentPeople.remove(student);
-    	if(currentPeople.isEmpty()) {
+    	
+    	student.removeGroup(group);
+    	
+    	// delete group if no student exists
+    	if(group.getAllPeople().isEmpty()) {
     		repository.deleteById(group.getId());
-    	}
-    	else {
-    		//group.setAllPeople(currentPeople);
     	}
     }
 
     @PutMapping("/joinGroup/{group}/{student}")
    Group joinGroup(@PathVariable Group group,@PathVariable People student) {
+    	
     	/*EntityManagerFactory emf = Persistence.createEntityManagerFactory("jp-ok");
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
@@ -104,7 +103,8 @@ class GroupController {
         //entityManager.persist(group);
         //transaction.commit();
     }
-
+    
+    // Bundle with friend
     @PostMapping("/joinGroup/{group}/{student1}/{student2}")
     Group joinGroupWithFriend(@PathVariable Group group,@PathVariable People student1,@PathVariable People student2) {
     	List<People> unAssignedStudents = group.getCourse().getUnassignedStudents();
@@ -115,6 +115,7 @@ class GroupController {
         }
        return group;
     }
+    
     @PostMapping("/{course}/addGroup/{student}")
     public Group addGroup(@PathVariable Course course,@PathVariable People student, @RequestBody String name) {
     	Group group = new Group();
@@ -126,6 +127,8 @@ class GroupController {
     	
     	return group;
     }
+    
+    // delete a group
     @DeleteMapping("/allGroups/{id}")
     void deleteGroup(@PathVariable Long id) {
         repository.deleteById(id);

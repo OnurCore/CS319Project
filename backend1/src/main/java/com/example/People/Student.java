@@ -10,6 +10,8 @@ import javax.persistence.Table;
 import com.example.Grades.Grade;
 
 
+// Old Design
+
 public class Student extends People{
 	
 	//private Grade peerGrade;

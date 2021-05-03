@@ -6,6 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+/*
+ * This is to organize group objectives
+ */
 @Entity
 public class Task{
 	@Id
@@ -18,6 +21,7 @@ public class Task{
 	
 	private Date date;
 	
+	// getters setters
 	public String getName() {
 		return name;
 	}
