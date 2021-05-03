@@ -1,6 +1,7 @@
 package com.example.Form;
 
 import com.example.People.*;
+import java.io.Serializable;
 
 import java.util.List;
 import java.lang.Override;
@@ -16,7 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.JoinColumn;
 @Entity
 @Table(name = "Answer")
-public class Answer extends QuestionBase{
+public class Answer extends QuestionBase implements Serializable{
 	@ManyToOne
 	//@JoinColumn(name = "student_id")
 	private People student;

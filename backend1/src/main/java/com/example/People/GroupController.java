@@ -1,5 +1,7 @@
 package com.example.People;
-
+import com.example.People.GroupPeopleUnionRepository;
+import java.util.stream.Collectors;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Persistence;
 import javax.persistence.EntityManager;
@@ -18,10 +20,13 @@ class GroupController {
 
     private final GroupRepository repository;
     private final PeopleRepository peopleRepository;
-    
-    public GroupController(GroupRepository repository, PeopleRepository peopleRepository) {
+    private final GroupPeopleUnionRepository groupPeopleUnionRepository;
+    public GroupController(GroupRepository repository,
+    						PeopleRepository peopleRepository,
+    						GroupPeopleUnionRepository groupPeopleUnionRepository) {
         this.repository = repository;
         this.peopleRepository = peopleRepository;
+        this.groupPeopleUnionRepository = groupPeopleUnionRepository;
     }
 
 
@@ -72,57 +77,53 @@ class GroupController {
     }
     @PostMapping("/leaveGroup/{group}/{student}")
     void leaveGroup(@PathVariable Group group, People student) {
-    	List<People> currentPeople = group.getAllPeople();
-    	currentPeople.remove(student);
+    	List<People> currentPeople = new ArrayList<People>();
+    	//List<GroupPeopleUnion> unions = group.
+    	//currentPeople.remove(student);
     	if(currentPeople.isEmpty()) {
     		repository.deleteById(group.getId());
     	}
     	else {
-    		group.setAllPeople(currentPeople);
+    		//group.setAllPeople(currentPeople);
     	}
     }
 
-    @PostMapping("/joinGroup/{group}/{student}")
-   Group joinGroup(@PathVariable Group group, People student) {
+    @PutMapping("/joinGroup/{group}/{student}")
+   Group joinGroup(@PathVariable Group group,@PathVariable People student) {
     	/*EntityManagerFactory emf = Persistence.createEntityManagerFactory("jp-ok");
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();*/
-        /*
+        
         List<People> currentPeople = group.getAllPeople();
-        if (group.getCourse().getUnassignedStudents().contains(people)) {
-            List<Group> groups = people.getAllGroups();    
-        	groups.add(group);
-            people.setAllGroups(groups);
+        if (group.getCourse().getUnassignedStudents().contains(student)) {
+            student.addGroup(group);
         }
-        group.setAllPeople(currentPeople);
-        repository.save(group);
         return group;
-        */
-    	student.addGroup(group);
-    	peopleRepository.save(student);
-    	return group;
+      
         //entityManager.persist(group);
         //transaction.commit();
     }
 
     @PostMapping("/joinGroup/{group}/{student1}/{student2}")
-    void joinGroupWithFriend(@PathVariable Group group, List<People> newPeople ) {
-        List<People> currentPeople = group.getAllPeople();
-        for (People people : newPeople) {
-            if (group.getCourse().getUnassignedStudents().contains(people)) {
-                currentPeople.add(people);
-            }
+    Group joinGroupWithFriend(@PathVariable Group group,@PathVariable People student1,@PathVariable People student2) {
+    	List<People> unAssignedStudents = group.getCourse().getUnassignedStudents();
+    	if (unAssignedStudents.contains(student1) 
+    			&& unAssignedStudents.contains(student2)) {
+            student1.addGroup(group);
+            student2.addGroup(group);
         }
-        group.setAllPeople(currentPeople);
+       return group;
     }
     @PostMapping("/{course}/addGroup/{student}")
-    public Group addGroup(@PathVariable Course course, People student, @RequestBody String name) {
+    public Group addGroup(@PathVariable Course course,@PathVariable People student, @RequestBody String name) {
     	Group group = new Group();
     	group.setName(name);
     	group.setCourse(course);
+    	
     	student.addGroup(group);
     	repository.save(group);
+    	
     	return group;
     }
     @DeleteMapping("/allGroups/{id}")

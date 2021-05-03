@@ -1,5 +1,6 @@
 package com.example.Course;
 import javax.persistence.ManyToMany;
+
 import java.util.ArrayList;
 import com.example.People.People;
 import com.example.People.People.PeopleType;
@@ -18,6 +19,8 @@ import javax.persistence.Table;
 import javax.persistence.ElementCollection;
 import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.example.People.GroupPeopleUnion;
 import java.io.Serializable;
 @Entity
 @Table
@@ -28,12 +31,12 @@ public class Course implements Serializable{
 	
 	private String name;
 	@OneToMany(mappedBy = "course")
-	@JsonBackReference
+	@JsonBackReference(value = "with_groups")
 	private List<Group> groups;
 	@ManyToMany(mappedBy = "allCourses")
-	//@JsonBackReference
+	@JsonBackReference(value = "with_people")
 	private List<People> people;
-	
+	@JsonIgnore
 	public List<People> getUnassignedStudents(){
 		List<People> newPeopleList = new ArrayList<People>();
 		for(People p: people) {

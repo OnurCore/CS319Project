@@ -18,9 +18,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.JoinColumn;
 import javax.persistence.Embedded;
 import javax.persistence.CollectionTable;
+import java.io.Serializable;
 @Entity
 @Table(name = "Assignment")
-public class Assignment {
+public class Assignment implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;

@@ -1,5 +1,6 @@
 package com.example.Form;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.example.Course.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,6 +21,7 @@ public class QuestionBase{
 	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@JsonProperty("id")
 	private Long id;
 
 	private QuestionType type;

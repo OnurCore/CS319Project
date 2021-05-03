@@ -1,5 +1,6 @@
 package com.example.Form;
 import com.example.Grades.*;
+import java.io.Serializable;
 import javax.persistence.OneToMany;
 import com.example.Course.Course;
 import com.example.People.*;
@@ -18,7 +19,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.ManyToOne;
 @Entity
 @Table
-public class Artifact {
+public class Artifact implements Serializable{
 	public enum ArtifactStatus{
 		NotSubmitted,
 		Submitted,

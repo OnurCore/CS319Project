@@ -1,5 +1,5 @@
 package com.example.Form;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.Entity;
 import com.example.Course.Course;
 import java.util.Date;
@@ -16,6 +16,7 @@ public class Formbase {
 	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	//@JsonProperty("id")
 	private Long id;
 	
 	private String name;
@@ -54,7 +55,7 @@ public class Formbase {
 		return course;
 	}
 
-	public void setCourse(Course courseId) {
+	public void setCourse(Course course) {
 		this.course = course;
 	}
 	

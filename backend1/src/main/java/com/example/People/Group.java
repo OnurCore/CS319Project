@@ -24,14 +24,14 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-@JsonIdentityInfo(
-		   generator = ObjectIdGenerators.PropertyGenerator.class,
-		   property = "id")
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.Serializable;
 @Entity
 @Table(name = "group_table")
-public class Group{
+public class Group implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonProperty("id")
 	private Long id;
 	@Column(name = "name")
 	private String name;
@@ -45,10 +45,15 @@ public class Group{
 	@ManyToOne
 	private Course course;
 	//private Grade groupGrade;
-	@ManyToMany(mappedBy="allGroups")
-	@JsonBackReference
-	private List<People> allPeople = new ArrayList<People>();
+	/*@OneToMany(
+	        mappedBy = "group",
+	        cascade = CascadeType.ALL,
+	        orphanRemoval = true
+	    )
+	private List<GroupPeopleUnion> allPeople = new ArrayList<GroupPeopleUnion>();*/
 	
+	@ManyToMany(mappedBy = "allGroups")
+	private List<People> allPeople = new ArrayList<People>();
 	
 	public List<People> getAllPeople() {
 		

@@ -1,6 +1,8 @@
 package com.example.Form;
 
 import com.example.Grades.Grade;
+import org.springframework.web.multipart.MultipartFile;
+import java.io.IOException;
 import com.example.Course.Course;
 import com.example.Form.Artifact.ArtifactStatus;
 
@@ -113,35 +115,64 @@ public class AssignmentReviewController {
 			}
 		}
 	}
-	@PostMapping("/{questionForm}/CreateAnswerForms")
-	public void createQuestionForm(@PathVariable QuestionForm questionForm) {
-		Course course = questionForm.getCourse();
+	@PostMapping("/{course}/CreateQuestionForm")
+	public QuestionForm createQuestionForm(@PathVariable Course course,@RequestBody QuestionForm questionForm) {
+		questionForm.setCourse(course);
+		/*
+		for(Question question : questionForm.getQuestions()) {
+			question.setCourse(course);
+			question.setQuestionForm(questionForm);
+			questionRepo.save(question);
+		}*/
 		questionFormRepo.save(questionForm);
+		return questionForm;
+	}
+	@PostMapping("/{questionForm}/addQuestion")
+	public Question addQuestion(@PathVariable QuestionForm questionForm, @RequestBody Question question) {
+		question.setCourse(questionForm.getCourse());
+		questionForm.addQuestion(question);
+		questionRepo.save(question);
+		return question;
+	}
+	@PostMapping("/{questionForm}/CreateAnswerForms")
+	public void createAnswerForms(@PathVariable QuestionForm questionForm) {
+		Course course = questionForm.getCourse();
+		//questionFormRepo.save(questionForm);
 		
 		List<Question> questions = questionForm.getQuestions();
-		
+		/*
 		for(int i = 0;i  < questions.size();i++) {
 			Question question = questions.get(i);
 			question.setCourse(course);
 			question.setQuestionForm(questionForm);
 			questionRepo.save(question);
-		}	
+		}*/
 			List<People> allPeople = course.getPeople();
 			List<People> students = getStudentsFromPeople(allPeople);
 			for(int j = 0;j < students.size();j++) {
 
 						
-				AnswerForm answerForm = AnswerForm.correctedAnswerForm(new AnswerForm(questionForm, students.get(j), null));
+				AnswerForm answerForm = new AnswerForm(questionForm, students.get(j), null);
 				answerFormRepo.save(answerForm);
 				for(int i = 0;i < questions.size();i++) {
-					answerRepo.save(answerForm.getAnswer().get(i));
+					Answer answer = new Answer(students.get(i), answerForm, questions.get(i));//problematic
+					questions.get(i).addAnswer(answer);
+					answerForm.addAnswer(answer);
+					answerRepo.save(answer);
 				}
+				
 			}
 			
 	}
 	@PutMapping("/UpdateAnswerForm")
 	public void updateAnswerForm(@RequestBody Answer answer) {
 		answerRepo.save(answer);
+	}
+	@PostMapping("/{artifact}/uploadFile")
+	public void uploadFile(@PathVariable Artifact artifact, @RequestBody MultipartFile file) 
+	throws IOException{
+		artifact.setFile(file.getBytes());
+		artifactRepository.save(artifact);
 	}
 	@PutMapping("/UploadAssignment/{artifact}")
 	public void updateArtifact(@PathVariable Artifact artifact) {

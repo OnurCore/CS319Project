@@ -1,5 +1,5 @@
 package com.example.People;
-
+import java.io.Serializable;
 import com.example.Course.Course;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.ArrayList;
@@ -18,12 +18,10 @@ import javax.persistence.CascadeType;
 import javax.persistence.JoinTable;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-@JsonIdentityInfo(
-		   generator = ObjectIdGenerators.PropertyGenerator.class,
-		   property = "id")
+
 @Entity
 @Table
-public class People{
+public class People implements Serializable{
 	public enum PeopleType{
 		Administrator,
 		Instructor,
@@ -40,21 +38,30 @@ public class People{
 	@JoinTable(name = "courseID_peopleID",
 			joinColumns = @JoinColumn(name = "course_id", referencedColumnName = "Id"),
 	inverseJoinColumns = @JoinColumn(name = "people_id", referencedColumnName = "Id"))
-	private List<Course> allCourses;
+	private List<Course> allCourses = new ArrayList<Course>();
 	
-	private PeopleType people;
-	
-	@ManyToMany(cascade = {CascadeType.MERGE})
-	@JoinTable(name = "groupID_peopleID",
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinTable(name = "groupID_and_peopleID",
 			joinColumns = @JoinColumn(name = "group_id", referencedColumnName = "Id"),
 	inverseJoinColumns = @JoinColumn(name = "people_id", referencedColumnName = "Id"))
-	private List<Group> allGroups; 
+	private List<Group> allGroups = new ArrayList<Group>();
+	private PeopleType people;
+	
+	
+	/*@OneToMany(
+	        mappedBy = "people",
+	        cascade = CascadeType.ALL,
+	        orphanRemoval = true
+	    )
+	private List<GroupPeopleUnion> allGroups = new ArrayList<GroupPeopleUnion>();*/
 	
 	public void addGroup(Group group) {
-		if(this.getAllGroups() == null) {
-			allGroups = new ArrayList<Group>();
-		}
 		allGroups.add(group);
+		group.getAllPeople().add(this);
+	}
+	public void removeGroup(Group group) {
+		group.getAllPeople().remove(this);
+		allGroups.remove(group);
 	}
 	
 	public String getPeople_name() {
