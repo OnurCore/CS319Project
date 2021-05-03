@@ -100,6 +100,21 @@ public class Artifact {
 		this.setAssignment(assignment);
 		this.setFile(null);
 	}
+	
+	public Integer getOverAllGrade() {
+		Integer sum = 0;
+		for(Grade grade: this.getGrades()) {
+			sum += grade.getGrade();
+		}
+		return sum;
+	}
+	public Integer getOverAllMaxGrade() {
+		Integer sum = 0;
+		for(Grade grade: this.getGrades()) {
+			sum += grade.getCriteria().getMaximum();
+		}
+		return sum;
+	} 
 	public Course getCourse() {
 		return course;
 	}

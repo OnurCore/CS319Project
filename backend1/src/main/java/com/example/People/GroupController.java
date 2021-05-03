@@ -1,7 +1,10 @@
 package com.example.People;
 
 import java.util.List;
-
+import javax.persistence.Persistence;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -80,28 +83,48 @@ class GroupController {
     }
 
     @PostMapping("/joinGroup/{group}/{student}")
-    void joinGroup(@PathVariable Group group, People people) {
-        List<People> currentPeople = group.getAllPeople();
-        
-        //Comments will beremoved later
+   Group joinGroup(@PathVariable Group group, People student) {
+    	/*EntityManagerFactory emf = Persistence.createEntityManagerFactory("jp-ok");
+        EntityManager entityManager = emf.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();*/
         /*
+        List<People> currentPeople = group.getAllPeople();
         if (group.getCourse().getUnassignedStudents().contains(people)) {
-                currentPeople.add(people);
-        }*/
+            List<Group> groups = people.getAllGroups();    
+        	groups.add(group);
+            people.setAllGroups(groups);
+        }
         group.setAllPeople(currentPeople);
+        repository.save(group);
+        return group;
+        */
+    	student.addGroup(group);
+    	peopleRepository.save(student);
+    	return group;
+        //entityManager.persist(group);
+        //transaction.commit();
     }
 
-    @PostMapping("/joinGroup/{group}/{student1}{student2}")
+    @PostMapping("/joinGroup/{group}/{student1}/{student2}")
     void joinGroupWithFriend(@PathVariable Group group, List<People> newPeople ) {
         List<People> currentPeople = group.getAllPeople();
         for (People people : newPeople) {
-            /*if (group.getCourse().getUnassignedStudents().contains(people)) {
+            if (group.getCourse().getUnassignedStudents().contains(people)) {
                 currentPeople.add(people);
-            }*/
+            }
         }
         group.setAllPeople(currentPeople);
     }
-
+    @PostMapping("/{course}/addGroup/{student}")
+    public Group addGroup(@PathVariable Course course, People student, @RequestBody String name) {
+    	Group group = new Group();
+    	group.setName(name);
+    	group.setCourse(course);
+    	student.addGroup(group);
+    	repository.save(group);
+    	return group;
+    }
     @DeleteMapping("/allGroups/{id}")
     void deleteGroup(@PathVariable Long id) {
         repository.deleteById(id);

@@ -84,11 +84,12 @@ public class AssignmentReviewController {
 		return assignmentRepository.findById(id)
 				.orElseThrow(()-> new AssignmentNotFoundException(id));
 	}
-	@PostMapping("/createAssignment")
-	public void createAssignment(@RequestBody Assignment assignment) {
+	@PostMapping("/{course}/createAssignment")
+	public void createAssignment(@PathVariable Course course, @RequestBody Assignment assignment) {
 		assignment.setStatus(AssignmentEnum.AssignmentStatus.Uploaded);
+		assignment.setCourse(course);
 		assignmentRepository.save(assignment);
-		List<People> people = assignment.getCourse().getPeople();
+		List<People> people = course.getPeople();
 		List<People> students = getStudentsFromPeople(people);
 		if(assignment.getType() == AssignmentEnum.AssignmentType.GroupAssignment) {
 			for(Group group : assignment.getCourse().getGroups()) {

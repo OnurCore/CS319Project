@@ -19,9 +19,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 @RestController
 public class GradeBook{
 	@GetMapping("/instructor={instructor}/Assignment={assignment}/criteria={criteria}")
-	public List<Grade> getGradingsOfAssignment(@PathVariable People instructor,
+	public List<Grade> getGradingsOfAssignmentCriterias(@PathVariable People instructor,
 											   Assignment assignment,
 											   GradingCriteria criteria){
+		if(instructor.getPeople() == PeopleType.Student) {
+			throw new StudentNotAuthorizedException();
+		}else {
 		List<Grade> grades = new ArrayList<Grade>();
 		List<Artifact> artifacts = assignment.getArtifacts();
 		for(Artifact artifact : artifacts){
@@ -33,6 +36,14 @@ public class GradeBook{
 		}
 		return grades;
 	}
+	}
+	@GetMapping("people={people}/Artifact={artifact}")
+	public OverAllGrade getGradingOfArtifact(@PathVariable People people, Artifact artifact) {
+		Integer sumGrade = artifact.getOverAllGrade();
+		Integer sumMaxGrade = artifact.getOverAllMaxGrade();
+		OverAllGrade overAllGrade = new OverAllGrade(sumGrade, sumMaxGrade);
+		return overAllGrade;
+	}
 	@GetMapping("/people={people}/artifact={artifact}grades")
 	public List<Grade> getGradesOfAnArtifact(@PathVariable People people,
 											Artifact artifact){
@@ -40,16 +51,21 @@ public class GradeBook{
 			if(artifact.getAssignment().getType() == AssignmentEnum.AssignmentType.StudentAssignment) {
 				if(artifact.getStudent() == people) {
 					return artifact.getGrades();
-				}else {return null;}
+				}else {
+					throw new StudentNotAuthorizedException();
+					}
 			}else {
 				if(artifact.getGroup().getAllPeople().contains(people)){
 					return artifact.getGrades();
-				}else {return null;}
+				}else { 
+						throw new StudentNotAuthorizedException();
+				}
 			}
 		}else {
 			return artifact.getGrades();
 		}
 	}
+
 	//It will be coded later
 	@GetMapping("/instructor={id}/questionForm={questionForm}/displayStatistcs={type}")
 	public void getStatistics(){

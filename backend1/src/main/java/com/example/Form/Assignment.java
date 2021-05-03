@@ -1,5 +1,6 @@
 package com.example.Form;
 import com.example.Course.Course;
+import java.util.ArrayList;
 import javax.persistence.ManyToOne;
 import com.example.People.*;
 import com.example.Grades.GradingCriteria;
@@ -35,11 +36,11 @@ public class Assignment {
 	private List<String> comments;
 	@OneToMany
 	@JoinColumn(name = "artifact_id")
-	private List<Artifact> artifacts;
+	private List<Artifact> artifacts = new ArrayList<Artifact>();
 	@Embedded
 	@ElementCollection
 	@CollectionTable(name="criterias", joinColumns=@JoinColumn(name="ID"))
-	private List<GradingCriteria> criterias;
+	private List<GradingCriteria> criterias = new ArrayList<GradingCriteria>();
 	
 	private AssignmentEnum.AssignmentType type;
 	public AssignmentEnum.AssignmentType getType() {

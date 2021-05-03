@@ -1,12 +1,17 @@
 package com.example.People;
 import javax.persistence.JoinColumn;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import javax.persistence.ManyToMany;
 import com.example.Calendar.GroupCalendar;
 import com.example.Calendar.Task;
 import com.example.Grades.Grade;
 import com.example.Course.Course;
+
 import javax.persistence.Entity;
 import java.util.Date;
 import java.util.List;
+import java.util.ArrayList;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,6 +22,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.ManyToOne;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+@JsonIdentityInfo(
+		   generator = ObjectIdGenerators.PropertyGenerator.class,
+		   property = "id")
 @Entity
 @Table(name = "group_table")
 public class Group{
@@ -31,13 +41,17 @@ public class Group{
 		//private List<Task> groupTasks;
 		//@OneToOne
 		//private GroupCalendar calendar;
-		@ManyToOne
-		private Course course;
+	
+	@ManyToOne
+	private Course course;
 	//private Grade groupGrade;
-	@OneToMany
-	@JoinColumn(name = "people_id", referencedColumnName = "Id")
-	private List<People> allPeople;
+	@ManyToMany(mappedBy="allGroups")
+	@JsonBackReference
+	private List<People> allPeople = new ArrayList<People>();
+	
+	
 	public List<People> getAllPeople() {
+		
 		return allPeople;
 	}
 
