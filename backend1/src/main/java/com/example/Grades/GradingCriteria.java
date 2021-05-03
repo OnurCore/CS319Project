@@ -1,10 +1,13 @@
 package com.example.Grades;
 import javax.persistence.Embeddable;
-@Embeddable
+
+@Embeddable // Don't have table but embeddable 
 public class GradingCriteria{
 	
 		private String explanation;
 		private Integer maximum;
+		
+		// getters setters
 		
 		public String getExplanation() {
 			return explanation;

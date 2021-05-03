@@ -37,25 +37,22 @@ public class AnswerForm extends Formbase implements Serializable{
 		this.setStudent(student);
 		this.setArtifact(artifact);
 		List<Question> questions = questionForm.getQuestions();
-		/*
-		for(int i = 0;i < questions.size();i++) {
-			//lastIndexForAnswer++;
-			Answer answer = new Answer(student, null, questions.get(i));//problematic
-			answers.add(answer);
-		}
-		this.answer = answers;
-		*/
 	}
+	// Guarantee answers have their answerform
 	public static AnswerForm correctedAnswerForm(AnswerForm answerForm) {
 		for (Answer answer : answerForm.getAnswer()) {
 			answer.setAnswerForm(answerForm);
 		}
 		return answerForm;
 	}
+	
+	//Utility function to add answer
 	public void addAnswer(Answer answer) {
 		answer.setAnswerForm(this);
 		this.getAnswer().add(answer);
 	}
+	
+	// Getters and setters
 	public List<Answer> getAnswer() {
 		return answer;
 	}

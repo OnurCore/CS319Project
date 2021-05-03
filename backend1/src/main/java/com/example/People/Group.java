@@ -33,27 +33,20 @@ public class Group implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@JsonProperty("id")
 	private Long id;
+	
 	@Column(name = "name")
 	private String name;
 	
 	private Integer groupNo;
-	//@JoinColumn(name = "task_id", referencedColumnName = "Id")
-		//private List<Task> groupTasks;
-		//@OneToOne
-		//private GroupCalendar calendar;
 	
 	@ManyToOne
 	private Course course;
-	//private Grade groupGrade;
-	/*@OneToMany(
-	        mappedBy = "group",
-	        cascade = CascadeType.ALL,
-	        orphanRemoval = true
-	    )
-	private List<GroupPeopleUnion> allPeople = new ArrayList<GroupPeopleUnion>();*/
 	
 	@ManyToMany(mappedBy = "allGroups")
 	private List<People> allPeople = new ArrayList<People>();
+	
+	
+	// getters setters
 	
 	public List<People> getAllPeople() {
 		

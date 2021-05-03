@@ -1,4 +1,7 @@
 package com.example.Grades;
+/*
+ * OverAll grade of student
+ */
 public class OverAllGrade{
 	private Integer grade;
 	private Integer maxgrade;

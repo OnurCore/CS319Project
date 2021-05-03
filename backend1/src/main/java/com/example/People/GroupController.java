@@ -38,7 +38,7 @@ class GroupController {
     }
     // end::get-aggregate-root[]
 
-    @PostMapping("/allGroups")
+    @PostMapping("/newGroup")
     Group newGroup(@RequestBody Group newGroup) {
         return repository.save(newGroup);
     }
@@ -58,7 +58,7 @@ class GroupController {
                 .orElseThrow(() -> new GroupNotFoundException(id));
     }
 
-    @PutMapping("addGroup/{id}")
+    @PutMapping("/newGroup/{id}")
     Group replaceGroup(@RequestBody Group newGroup, @PathVariable Long id) {
 
         return repository.findById(id)

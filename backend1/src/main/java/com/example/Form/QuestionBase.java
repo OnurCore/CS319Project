@@ -12,6 +12,11 @@ import javax.persistence.Lob;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.ElementCollection;
 import javax.persistence.ManyToOne;
+
+/*
+ * Super class of question and answer
+
+ */
 @MappedSuperclass 
 public class QuestionBase{
 	enum QuestionType{
@@ -33,10 +38,14 @@ public class QuestionBase{
 	private Long orderInForm;
 	
 	private Long maxEval;
+	
 	@ElementCollection
 	private List<String> multiplechoices;
+	
 	@ManyToOne
 	private Course course;
+	
+	// Getters setters
 	
 	public Long getId() {
 		return id;

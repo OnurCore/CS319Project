@@ -8,6 +8,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.ManyToOne;
+/*
+ * Super class of Answerform and questionform
+ * 
+ */
+
 @MappedSuperclass // This tells Hibernate to make a table out of this class
 public class Formbase {
 	enum FormType{
@@ -22,11 +27,13 @@ public class Formbase {
 	private String name;
 
 	private FormType type;
+	
 	@ManyToOne
 	private Course course;
 	
 	private Date date;
 	
+	// getters setters
 	public Long getId() {
 		return id;
 	}

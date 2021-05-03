@@ -22,6 +22,14 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.example.People.GroupPeopleUnion;
 import java.io.Serializable;
+
+/*
+ * 
+ * 
+ * 
+ * 
+ * */
+ 
 @Entity
 @Table
 public class Course implements Serializable{
@@ -30,31 +38,42 @@ public class Course implements Serializable{
 	private Long id;
 	
 	private String name;
+	
 	@OneToMany(mappedBy = "course")
-	@JsonBackReference(value = "with_groups")
+	@JsonBackReference(value = "with_groups") // To prevent recursion
 	private List<Group> groups;
+	
 	@ManyToMany(mappedBy = "allCourses")
-	@JsonBackReference(value = "with_people")
+	@JsonBackReference(value = "with_people") // To prevent recursion
 	private List<People> people;
-	@JsonIgnore
+	
+	@JsonIgnore // Not needed to serialize
 	public List<People> getUnassignedStudents(){
 		List<People> newPeopleList = new ArrayList<People>();
+		
+		// newPeopleList are student members of the course
 		for(People p: people) {
 			if(p.getPeople() == PeopleType.Student) {
 				newPeopleList.add(p);
 			}
 		}
+		
+		// remove if student have group
 		for(Group group : groups) {
 			for(People p : group.getAllPeople()) {
 				newPeopleList.remove(p);
 			}
 		}
+		
 		if(newPeopleList.isEmpty()) {
 			return null;
 		}else {
 			return newPeopleList;
 		}
 	}
+	
+	//getters and setters
+	
 	public Long getId() {
 		return id;
 	}

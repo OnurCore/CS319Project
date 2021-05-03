@@ -19,14 +19,23 @@ public class Grade{
 	private Integer grade;
 	
 	private String comment;
+	
+	// Associated criteria
 	@Embedded
 	private GradingCriteria criteria;
 
 	private GradeType type;
+	
+	// Default constructor
 	public Grade() {super();}
+	
+	// construct with criteria
 	public Grade(GradingCriteria crit) {
 		this.setCriteria(crit);
 	}
+	
+	// getters setters
+	
 	public Long getId() {
 		return id;
 	}

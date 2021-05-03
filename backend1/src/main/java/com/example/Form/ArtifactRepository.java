@@ -10,6 +10,7 @@ import com.example.Course.Course;
 // CRUD refers Create, Read, Update, Delete
 
 public interface ArtifactRepository extends CrudRepository<Artifact, Long> {
+	
 	List<Artifact> findByCourseAndStudentOrderByDateDesc(Course courseId,People studentId);
 	Artifact findTopByStudentOrderByIdDesc(People studentId);
 	Artifact findTopByGroupOrderByIdDesc(Group groupId);

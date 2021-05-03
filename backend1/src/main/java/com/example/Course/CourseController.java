@@ -25,22 +25,27 @@ public class CourseController {
 	CourseController(CourseRepository courseRepository){
 		this.courseRepository = courseRepository;
 	}
-	/*
-	@GetMapping("/group?id={id}")
+	// Gets all courses
+	@GetMapping("/allCourses/{id}")
 	public List<Course> getCourses(@PathVariable People id){
 		return courseRepository.findByPeopleOrderByName(id);
 	}
-	*/
-	@GetMapping("/group?id={id}")
+	
+	// Get information of one course
+	@GetMapping("/getCourse/{id}")
 	public Course getCourse(@PathVariable Long id) {
 		return courseRepository.findById(id)
 				.orElseThrow(() -> new CourseNotFoundException(id));
 	}
+	
+	// Create Course by information coming from frontend
 	@PostMapping("/createCourse")
 	public void createCourse(@RequestBody Course course) {
 		courseRepository.save(course);
 	}
-	@DeleteMapping("/group?id={id}")
+	
+	//Delete Course
+	@DeleteMapping("/deleteCourse/{id}")
 	public void deleteCourse(@PathVariable Long id) {
 		courseRepository.deleteById(id);
 	}
