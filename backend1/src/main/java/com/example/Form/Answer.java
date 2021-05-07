@@ -1,6 +1,7 @@
 package com.example.Form;
 
 import com.example.People.*;
+import java.io.Serializable;
 
 import java.util.List;
 import java.lang.Override;
@@ -16,18 +17,25 @@ import javax.persistence.OneToMany;
 import javax.persistence.JoinColumn;
 @Entity
 @Table(name = "Answer")
-public class Answer extends QuestionBase{
+public class Answer extends QuestionBase implements Serializable{
+	// student which answerform is assigned
 	@ManyToOne
-	//@JoinColumn(name = "student_id")
 	private People student;
+	
+	// Answerform which this answer is assigned
 	@ManyToOne
 	private AnswerForm answerForm;
 	
+	// question to be answered
 	@ManyToOne
-	//@JoinColumn(name = "question_id")
 	private Question correspondingQuestion;
+	
+	// Default constructor
 	public Answer() {super();}
+	
+	// Construct with student answerform and question
 	public Answer(People student,AnswerForm answerForm, Question question) {
+		
 		this.setStudent(student);
 		this.setAnswerForm(answerForm);
 		
@@ -40,6 +48,9 @@ public class Answer extends QuestionBase{
 		
 		this.setCorrespondingQuestion(question);
 	}
+	
+	// getters and setters
+	
 	public People getStudent() {
 		return student;
 	}

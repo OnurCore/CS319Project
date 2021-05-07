@@ -1,5 +1,5 @@
 package com.example.Form;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.Entity;
 import com.example.Course.Course;
 import java.util.Date;
@@ -8,6 +8,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.ManyToOne;
+/*
+ * Super class of Answerform and questionform
+ * 
+ */
+
 @MappedSuperclass // This tells Hibernate to make a table out of this class
 public class Formbase {
 	enum FormType{
@@ -16,16 +21,19 @@ public class Formbase {
 	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	//@JsonProperty("id")
 	private Long id;
 	
 	private String name;
 
 	private FormType type;
+	
 	@ManyToOne
 	private Course course;
 	
 	private Date date;
 	
+	// getters setters
 	public Long getId() {
 		return id;
 	}
@@ -54,7 +62,7 @@ public class Formbase {
 		return course;
 	}
 
-	public void setCourse(Course courseId) {
+	public void setCourse(Course course) {
 		this.course = course;
 	}
 	

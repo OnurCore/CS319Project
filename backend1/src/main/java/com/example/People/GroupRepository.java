@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 interface GroupRepository extends JpaRepository<Group, Long>{
 	 List<Group> findByCourseOrderByName(Course course);
+	 List<Group> findAllByOrderByGroupNoAsc();
 }

@@ -13,5 +13,4 @@ public interface AssignmentRepository extends CrudRepository<Assignment, Long> {
 	QuestionForm findTopByOrderByIdDesc();
 	//@Query("SELECT a FROM Assignment a WHERE a.course = ?1")
 	List<Assignment> findByCourseOrderByDate(Course course);
-	//Assignment findById(Assignment id);
 }

@@ -11,14 +11,14 @@ export default class Group extends React.Component {
 
         //This part is commented because, fake database api request has limited usage. 
 
-        // const url = "https://0fb8886f-8d61-4bc9-9b01-4362a104ed54.mock.pstmn.io/group?id=" + this.props.id
-        // const response = await fetch(url);
-        // const data = await response.json();
-        // this.setState({
-        //     loading: false,
-        //     groupInfo: data
-        // })
-
+         const url = "http://localhost:8080/allGroups/" + this.props.id
+         const response = await fetch(url);
+         const data = await response.json();
+         this.setState({
+             loading: false,
+            groupInfo: data
+         })}
+/*
         this.setState({
             loading: false,
             groupInfo: { "id": 1,
@@ -29,7 +29,7 @@ export default class Group extends React.Component {
                     "dummy data",
                     "dummy data" ]}})
     }
-    
+    */
     render(){
        
         return (
@@ -41,11 +41,7 @@ export default class Group extends React.Component {
                     <div className="group-name-list">
                     <h1>Group {this.props.id}</h1>
                     <ul>
-                        <li>{this.state.groupInfo.userlist[0]}</li>
-                        <li>{this.state.groupInfo.userlist[1]}</li>
-                        <li>{this.state.groupInfo.userlist[2]}</li>
-                        <li>{this.state.groupInfo.userlist[3]}</li>
-                        <li>{this.state.groupInfo.userlist[4]}</li>
+                        <li>{this.state.groupInfo.name}</li>
                     </ul>
                 </div>
            

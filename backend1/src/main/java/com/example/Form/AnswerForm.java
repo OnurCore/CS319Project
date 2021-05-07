@@ -1,5 +1,6 @@
 package com.example.Form;
 import javax.persistence.CascadeType;
+import java.io.Serializable;
 import com.example.People.*;
 
 import java.util.List;
@@ -16,7 +17,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.OneToMany;
 @Entity // This tells Hibernate to make a table out of this class
 @Table(name = "answer_form")
-public class AnswerForm extends Formbase{
+public class AnswerForm extends Formbase implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "student_id", referencedColumnName = "Id")
 	private People student;
@@ -26,7 +27,7 @@ public class AnswerForm extends Formbase{
 	
 	@OneToMany(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "artifact_id", referencedColumnName = "Id")
-	private List<Answer> answer;
+	private List<Answer> answer = new ArrayList<Answer>();
 	public AnswerForm() {super();}
 	public AnswerForm(QuestionForm questionForm, People student, Artifact artifact) {
 		this.setName(questionForm.getName());
@@ -36,20 +37,22 @@ public class AnswerForm extends Formbase{
 		this.setStudent(student);
 		this.setArtifact(artifact);
 		List<Question> questions = questionForm.getQuestions();
-		List<Answer> answers = new ArrayList<Answer>();
-		for(int i = 0;i < questions.size();i++) {
-			//lastIndexForAnswer++;
-			Answer answer = new Answer(student, null, questions.get(i));//problematic
-			answers.add(answer);
-		}
-		this.answer = answers;
 	}
+	// Guarantee answers have their answerform
 	public static AnswerForm correctedAnswerForm(AnswerForm answerForm) {
 		for (Answer answer : answerForm.getAnswer()) {
 			answer.setAnswerForm(answerForm);
 		}
 		return answerForm;
 	}
+	
+	//Utility function to add answer
+	public void addAnswer(Answer answer) {
+		answer.setAnswerForm(this);
+		this.getAnswer().add(answer);
+	}
+	
+	// Getters and setters
 	public List<Answer> getAnswer() {
 		return answer;
 	}

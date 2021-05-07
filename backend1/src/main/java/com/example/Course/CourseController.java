@@ -25,19 +25,36 @@ public class CourseController {
 	CourseController(CourseRepository courseRepository){
 		this.courseRepository = courseRepository;
 	}
-	@GetMapping("/{id}/courses")
+	// Gets all courses
+	@GetMapping("/allCourses/{id}")
 	public List<Course> getCourses(@PathVariable People id){
 		return courseRepository.findByPeopleOrderByName(id);
 	}
-	@GetMapping("/course/{id}")
+	@GetMapping("/getCourses")
+	public List<Course> getCourses() {
+		List<Course> courses = new ArrayList<Course>();
+		courseRepository.findAll().forEach(courses :: add);
+		return courses;
+	}
+	// Get information of one course
+	@GetMapping("/getCourse/{id}")
 	public Course getCourse(@PathVariable Long id) {
 		return courseRepository.findById(id)
 				.orElseThrow(() -> new CourseNotFoundException(id));
 	}
+	@GetMapping("/MembersofCourse/{course}")
+	public List<People> getMembersOfCourse(@PathVariable Course course){
+		return course.getPeople();
+	}
+	
+	
+	// Create Course by information coming from frontend
 	@PostMapping("/createCourse")
 	public void createCourse(@RequestBody Course course) {
 		courseRepository.save(course);
 	}
+	
+	//Delete Course
 	@DeleteMapping("/deleteCourse/{id}")
 	public void deleteCourse(@PathVariable Long id) {
 		courseRepository.deleteById(id);

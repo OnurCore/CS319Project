@@ -1,5 +1,6 @@
 package com.example.Form;
 import com.example.Course.Course;
+import java.util.ArrayList;
 import javax.persistence.ManyToOne;
 import com.example.People.*;
 import com.example.Grades.GradingCriteria;
@@ -17,39 +18,44 @@ import javax.persistence.OneToMany;
 import javax.persistence.JoinColumn;
 import javax.persistence.Embedded;
 import javax.persistence.CollectionTable;
+import java.io.Serializable;
 @Entity
 @Table(name = "Assignment")
-public class Assignment {
-	public enum AssignmentType{
-		GroupAssignment,
-		StudentAssignment
-	}
+public class Assignment implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	private String explanation;
+	private String explanation; // Explanation of homework
+	
 	@ManyToOne
 	private Course course;
 	
 	private Date date;
 	
-	private String status;
+	private AssignmentEnum.AssignmentStatus status;
+	
 	@ElementCollection
-	private List<String> comments;
+	private List<String> comments;// Comments of students for the assignment
+	
+	// Corresponding Artifacts
 	@OneToMany
 	@JoinColumn(name = "artifact_id")
-	private List<Artifact> artifacts;
+	private List<Artifact> artifacts = new ArrayList<Artifact>();
+	
+	// Grading Criterias to make grading of artifacts easier
 	@Embedded
 	@ElementCollection
 	@CollectionTable(name="criterias", joinColumns=@JoinColumn(name="ID"))
-	private List<GradingCriteria> criterias;
+	private List<GradingCriteria> criterias = new ArrayList<GradingCriteria>();
 	
-	private AssignmentType type;
-	public AssignmentType getType() {
+	private AssignmentEnum.AssignmentType type;
+	
+	// Getters and Setters
+	public AssignmentEnum.AssignmentType getType() {
 		return type;
 	}
-	public void setType(AssignmentType type) {
+	public void setType(AssignmentEnum.AssignmentType type) {
 		this.type = type;
 	}
 	public Long getId() {
@@ -76,10 +82,10 @@ public class Assignment {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public String getStatus() {
+	public AssignmentEnum.AssignmentStatus getStatus() {
 		return status;
 	}
-	public void setStatus(String status) {
+	public void setStatus(AssignmentEnum.AssignmentStatus status) {
 		this.status = status;
 	}
 	public List<String> getComments() {

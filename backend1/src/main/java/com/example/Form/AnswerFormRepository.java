@@ -10,9 +10,16 @@ import com.example.People.People;
 // CRUD refers Create, Read, Update, Delete
 
 public interface AnswerFormRepository extends CrudRepository<AnswerForm, Long> {
+	
+	// Answerform of student
 	List<AnswerForm> findByStudent(People studentId);
+	
+	// Find answerform associated to artifact
 	List<AnswerForm> findByArtifact(Artifact artifactId);
+	
 	List<AnswerForm> findByStudentAndCourse(People studentId, Course course);
 	List<AnswerForm> findByArtifactAndCourse(Artifact artifact, Course course);
+	
+	// Get last uploaded answerform
 	AnswerForm findTopByOrderByIdDesc();
 }
